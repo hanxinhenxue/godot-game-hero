@@ -1,6 +1,6 @@
 class_name StateMachine
 extends Node
-
+#初始状态
 var current_state: int = -1:
 	set(v):
 		owner.transition_state(current_state, v)
