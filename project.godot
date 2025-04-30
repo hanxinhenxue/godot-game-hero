@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="game03"
-run/main_scene="uid://coakd5grj0axx"
+config/name="hero"
+run/main_scene="uid://cbhs5ay84bul3"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,10 +23,6 @@ window/size/always_on_top=true
 window/size/window_width_override=1152
 window/size/window_height_override=648
 window/stretch/mode="canvas_items"
-
-[dotnet]
-
-project/assembly_name="game03"
 
 [input]
 

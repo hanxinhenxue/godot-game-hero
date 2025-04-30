@@ -21,7 +21,6 @@ const AIR_ACCELERATION := RUN_SPEED / 0.02
 const JUMP_VELOCITY := -320.0
 #第一帧
 var is_first_tick = false
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var coyote_timer: Timer = $CoyoteTimer
@@ -51,7 +50,7 @@ func tick_physics(state: State, delta: float) -> void:
 		State.FALL:
 			move(default_gravity, delta)
 			
-		State.JUMP:
+		State.LANDING:
 			stand(delta)
 			
 	is_first_tick = false
@@ -103,7 +102,7 @@ func get_next_state(state: State)-> State:
 		
 		State.FALL:
 			if is_on_floor():
-				return State.IDLE if is_still else State.RUNNING
+				return State.LANDING if is_still else State.RUNNING
 				
 		State.LANDING:
 			if not animation_player.is_playing():

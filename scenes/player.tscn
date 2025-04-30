@@ -1,16 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwip16i3i52cn"]
+[gd_scene load_steps=12 format=3 uid="uid://vefv5dasng0e"]
 
-[ext_resource type="Texture2D" uid="uid://b0yqij28v85d7" path="res://assets/tileMap/char_blue_1.png" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://clf855ssys4g" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://bx3jr4yxcjphc" path="res://classes/StateMachine.gd" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://c6640pfe62cwh" path="res://assets/tileMap/char_blue_0.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dscpkyeycik5q" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://bohd35s665vnh" path="res://classes/StateMachine.gd" id="3_qhqgy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(9, 26)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
+size = Vector2(7, 28)
 
-[sub_resource type="Animation" id="Animation_qhqgy"]
+[sub_resource type="Animation" id="Animation_3vyb7"]
 resource_name = "idle"
 length = 0.6
 loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,13 +43,13 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 0, 1, 2, 3, 4, 5]
+"values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_dqkch"]
+[sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -87,10 +88,11 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_qlg0r"]
+[sub_resource type="Animation" id="Animation_qhqgy"]
 resource_name = "running"
 length = 0.8
 loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -128,10 +130,11 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_tuyoq"]
+[sub_resource type="Animation" id="Animation_dqkch"]
 resource_name = "jump"
 length = 0.4
 loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -169,9 +172,10 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_g2els"]
+[sub_resource type="Animation" id="Animation_qlg0r"]
 resource_name = "landing"
-length = 0.3
+length = 0.25
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -203,16 +207,15 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.05, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_fjrip"]
+[sub_resource type="Animation" id="Animation_tuyoq"]
 resource_name = "fall"
 length = 0.4
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -251,14 +254,14 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qhqgy"]
 _data = {
-&"RESET": SubResource("Animation_dqkch"),
-&"fall": SubResource("Animation_fjrip"),
-&"idle": SubResource("Animation_qhqgy"),
-&"jump": SubResource("Animation_tuyoq"),
-&"landing": SubResource("Animation_g2els"),
-&"running": SubResource("Animation_qlg0r")
+&"RESET": SubResource("Animation_g2els"),
+&"fall": SubResource("Animation_tuyoq"),
+&"idle": SubResource("Animation_3vyb7"),
+&"jump": SubResource("Animation_dqkch"),
+&"landing": SubResource("Animation_qlg0r"),
+&"running": SubResource("Animation_qhqgy")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -267,20 +270,19 @@ z_as_relative = false
 script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -29)
+position = Vector2(0, -28)
 texture = ExtResource("1_3vyb7")
 hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 0, 336, 56)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -14)
-shape = SubResource("RectangleShape2D_g2els")
+position = Vector2(-1, -14)
+shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-deterministic = true
 libraries = {
-&"": SubResource("AnimationLibrary_fjrip")
+&"": SubResource("AnimationLibrary_qhqgy")
 }
 
 [node name="CoyoteTimer" type="Timer" parent="."]
@@ -288,9 +290,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="JumpRequestTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_qhqgy")
-metadata/_custom_type_script = "uid://bx3jr4yxcjphc"
+metadata/_custom_type_script = "uid://bohd35s665vnh"
